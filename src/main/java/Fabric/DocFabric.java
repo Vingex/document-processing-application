@@ -6,6 +6,7 @@
 package Fabric;
 import java.util.Random;
 import Generators.*;
+import Documents.*;
 import java.util.Date;
 /**
  *
@@ -20,6 +21,7 @@ public class DocFabric {
     PeopleGenerate PplG;
     DateGenerator DtG;
     SelectDeliveryMethod SDM;
+    NumberGenerate NmbG;
     
     DocFabric(){
         id=0;
@@ -28,7 +30,7 @@ public class DocFabric {
         idOutgoing=1;
     }
     
-    public void GenerationDoc(String clas){
+    public Document GenerationDoc(String clas){
 
         int identifier = id;
         String Name = StrG.NewName();
@@ -46,11 +48,20 @@ public class DocFabric {
             }
             case "Incoming":
             {
+                int RegistrationNumber = idIncoming;//нужна проверка на занятость
+                idIncoming++;
+                
                 
             }
             case "Outgoing":
             {
+                int RegistrationNumber = idOutgoing;//нужна проверка на занятость
+                idOutgoing++;
                 
+                String Addresser = PplG.RandomMan();
+                String DeliveryMethod = SDM.RandomDeliveryMethod();
+                Outgoing otg = new Outgoing(identifier, Name, Text, RegistrationNumber,date,Author, Addresser, DeliveryMethod);
+                return otg;
             }                 
                     
                     
