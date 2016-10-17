@@ -5,17 +5,39 @@
  */
 package com.mycompany.documentfactorym;
 
+import java.util.ArrayList;
+import Documents.*;
+import Exception.DocumentExistsException;
+import Fabric.DocFabric;
+import Generators.PeopleGenerate;
+import java.util.Collections;
+import java.util.Random;
 /**
  *
  * @author Алексей
  */
 public class DocumentFactoryM {
+    
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws DocumentExistsException {
+        ArrayList<Document> SaveDocs = new ArrayList<Document>();
+        DocFabric DFabric = new DocFabric();
+        String[] strClass = new String[]{"Task", "Incoming", "Outgoing"};
+        Random random = new Random();
+        
+        for(int i=0; i<30; i++){
+            String clas1 = strClass[random.nextInt(strClass.length)];
+            DFabric.GenerationDoc(clas1, SaveDocs);
+        }
+        
+        DFabric.Print(SaveDocs);
+        //Collections.sort(SaveDocs,(o1, o2) -> o1.Compare(o2));
+
+
+
+
+
+
 
     }
     
