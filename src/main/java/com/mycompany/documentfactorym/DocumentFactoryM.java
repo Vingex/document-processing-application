@@ -9,9 +9,14 @@ import java.util.ArrayList;
 import Documents.*;
 import Exception.DocumentExistsException;
 import Fabric.DocFabric;
-import Generators.PeopleGenerate;
-import java.util.Collections;
 import java.util.Random;
+import Staffs.*;
+import Parsers.JaxbParser;
+import java.io.File;
+import javax.xml.bind.JAXBException;
+import XML.*;
+import StaffGroup.*;
+
 /**
  *
  * @author Алексей
@@ -19,9 +24,15 @@ import java.util.Random;
 public class DocumentFactoryM {
     
 
-    public static void main(String[] args) throws DocumentExistsException {
+    public static void main(String[] args) throws DocumentExistsException, JAXBException {
+        XMLStaffReader reader  = new XMLStaffReader();
+        GroupPerson groupPerson = (GroupPerson) reader.GetFromXML(GroupPerson.class, "persons.xml");
+        GroupPerson groupPersonOut = (GroupPerson) reader.GetFromXML(GroupPerson.class, "personsOut.xml");
+        GroupDepartament Departaments = (GroupDepartament) reader.GetFromXML(GroupDepartament.class, "departaments.xml");
+        GroupOrganization Organizations = (GroupOrganization) reader.GetFromXML(GroupOrganization.class, "organizations.xml");
+        
         ArrayList<Document> SaveDocs = new ArrayList<Document>();
-        DocFabric DFabric = new DocFabric();
+        DocFabric DFabric = new DocFabric(groupPerson.getPersons(), groupPersonOut.getPersons());
         String[] strClass = new String[]{"Task", "Incoming", "Outgoing"};
         Random random = new Random();
         
@@ -31,13 +42,6 @@ public class DocumentFactoryM {
         }
         
         DFabric.Print(SaveDocs);
-        //Collections.sort(SaveDocs,(o1, o2) -> o1.Compare(o2));
-
-
-
-
-
-
 
     }
     
