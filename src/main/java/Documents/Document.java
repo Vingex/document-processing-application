@@ -7,6 +7,7 @@ package Documents;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
+import Staffs.Person;
 
 /**
  *
@@ -18,19 +19,19 @@ abstract public class Document implements Comparable, Storable {
     public String Text; //не уверен, что обычный стринг для текста подойдет
     public int RegistrationNumber;
     public Date date; 
-    public String Author;  
+    public Person Author;  
     
     @Override
-    public boolean Compare(Document doc){ //если в списке должен стоять раньше, то true, иначе false (даты сортируються от более поздних к более ранним)
+    public int Compare(Document doc){ 
 
-        if(RegistrationNumber>doc.RegistrationNumber)
-            return true;        
-        else
-            if(date.compareTo(doc.date)==(-1))
-                return true;                
+        if(RegistrationNumber!=doc.RegistrationNumber)
+            if(RegistrationNumber>doc.RegistrationNumber)
+                return 1;
             else
-                return false;
-               
+                return -1;
+        else
+            return date.compareTo(doc.date);
+
             
     }
     @Override

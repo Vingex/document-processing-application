@@ -5,17 +5,18 @@
  */
 package Documents;
 import java.util.Date;
+import Staffs.Person;
 /**
  *
  * @author Алексей
  */
 public class Incoming extends Document{
-    public String Sender;
-    public String Addresser;
-    public int outgoingNumber;
+    public Person Sender;
+    public Person Addresser;
+    public long outgoingNumber;
     public Date RegistrationDate; 
     
-    Incoming(int Identifier, String name, String text,int RegNumber,Date dat,String author, String sender, String addresser, int outNumber, Date regDate){
+    public  Incoming(int Identifier, String name, String text,int RegNumber,Date dat,Person author, Person sender, Person addresser, long outNumber, Date regDate){
         identifier = Identifier;
         Name = name;
         Text = text; //не уверен, что обычный стринг для текста подойдет
@@ -30,6 +31,6 @@ public class Incoming extends Document{
     }
     @Override
     public void DocToString(){
-        System.out.println("Входящий"+this.PreDocToString()); 
+        System.out.println("    Входящий"+this.PreDocToString()); 
     };
 }

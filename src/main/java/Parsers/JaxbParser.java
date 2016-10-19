@@ -18,8 +18,8 @@ import javax.xml.bind.Unmarshaller;
 public class JaxbParser implements Parser{
     
     @Override
-    public Object getObject(File file, Class c) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(c);
+    public Object getObject(File file, Class clas) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(clas);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         Object object = unmarshaller.unmarshal(file);
  
@@ -27,9 +27,9 @@ public class JaxbParser implements Parser{
     }
  
     @Override
-    public void saveObject(File file, Object o) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(o.getClass());
+    public void saveObject(File file, Object obj) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(obj.getClass());
         Marshaller marshaller = context.createMarshaller();
-        marshaller.marshal(o,file);
+        marshaller.marshal(obj,file);
     }
 }

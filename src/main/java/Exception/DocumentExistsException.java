@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Documents;
+package Exception;
 
 /**
  *
  * @author Алексей
  */
-public interface Comparable {
-    int Compare(Document doc);
+public class DocumentExistsException extends Exception{
+        public DocumentExistsException(String message){     
+        super(message);
+    }
 }

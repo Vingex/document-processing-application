@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Documents;
+package Parsers;
+
+import java.io.File;
+import javax.xml.bind.JAXBException;
 
 /**
  *
  * @author Алексей
  */
-public interface Comparable {
-    int Compare(Document doc);
+public interface Parser {
+    Object getObject(File file, Class c) throws JAXBException;
+    void saveObject(File file, Object o) throws JAXBException;
 }

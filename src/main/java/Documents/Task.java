@@ -5,6 +5,7 @@
  */
 package Documents;
 
+import Staffs.Person;
 import java.util.Date;
 
 /**
@@ -14,11 +15,11 @@ import java.util.Date;
 public class Task extends Document {
     public Date DateIssueOrder;    
     public Date DateExecutionTask;    
-    public String ResponsibleExecutor ;     
+    public Person ResponsibleExecutor ;     
     public boolean signControl; 
-    public String TaskController; 
+    public Person TaskController; 
     
-    Task(int Identifier, String name, String text,int RegNumber,Date dat,String author, Date DIssueOrder, Date DExecutionTask, String ResponsExecutor, boolean sControl, String TController ){
+    public  Task(int Identifier, String name, String text,int RegNumber,Date dat,Person author, Date DIssueOrder, Date DExecutionTask, Person ResponsExecutor, boolean sControl, Person TController ){
         identifier = Identifier;
         Name = name;
         Text = text; //не уверен, что обычный стринг для текста подойдет
@@ -37,6 +38,6 @@ public class Task extends Document {
     
     @Override
     public void DocToString(){
-        System.out.println("Поручение"+ this.PreDocToString()); 
+        System.out.println("    Поручение"+ this.PreDocToString()); 
     };
 }

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Documents;
+package StaffGroup;
 
 /**
  *
  * @author Алексей
  */
-public interface Comparable {
-    int Compare(Document doc);
+abstract public class StaffGroup implements XML.XMLwriter{
+    
 }

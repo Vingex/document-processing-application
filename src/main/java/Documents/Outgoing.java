@@ -5,6 +5,7 @@
  */
 package Documents;
 
+import Staffs.Person;
 import java.util.Date;
 
 /**
@@ -12,10 +13,10 @@ import java.util.Date;
  * @author Алексей
  */
 public class Outgoing extends Document{
-    public String Addresser;
+    public Person Addresser;
     public String DeliveryMethod;
     
-    Outgoing(int Identifier, String name, String text,int RegNumber,Date dat,String author, String addresser, String deliveryMethod){
+    public Outgoing(int Identifier, String name, String text,int RegNumber,Date dat,Person author, Person addresser, String deliveryMethod){
         identifier = Identifier;
         Name = name;
         Text = text; //не уверен, что обычный стринг для текста подойдет
@@ -30,6 +31,6 @@ public class Outgoing extends Document{
     
     @Override
     public void DocToString(){
-        System.out.println("Исходящий"+ this.PreDocToString()); 
+        System.out.println("    Исходящий"+ this.PreDocToString()); 
     };
 }

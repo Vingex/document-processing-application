@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Documents;
+package XML;
+
+import javax.xml.bind.JAXBException;
 
 /**
  *
  * @author Алексей
  */
-public interface Comparable {
-    int Compare(Document doc);
+public interface XMLwriter {
+    void SaveToXML()throws JAXBException;
 }
