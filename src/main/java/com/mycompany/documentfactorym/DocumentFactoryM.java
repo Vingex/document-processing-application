@@ -26,7 +26,7 @@ public class DocumentFactoryM {
 
     public static void main(String[] args) throws DocumentExistsException, JAXBException {
         XMLStaffReader reader  = new XMLStaffReader();
-        GroupPerson groupPerson = (GroupPerson) reader.GetFromXML(GroupPerson.class, "persons.xml");
+        GroupPerson groupPerson = (GroupPerson) reader.GetFromXML(GroupPerson.class, "persons.xml"); //считывание элементов организационной структуры с XML
         GroupPerson groupPersonOut = (GroupPerson) reader.GetFromXML(GroupPerson.class, "personsOut.xml");
         GroupDepartament Departaments = (GroupDepartament) reader.GetFromXML(GroupDepartament.class, "departaments.xml");
         GroupOrganization Organizations = (GroupOrganization) reader.GetFromXML(GroupOrganization.class, "organizations.xml");
@@ -35,13 +35,14 @@ public class DocumentFactoryM {
         DocFabric DFabric = new DocFabric(groupPerson.getPersons(), groupPersonOut.getPersons());
         String[] strClass = new String[]{"Task", "Incoming", "Outgoing"};
         Random random = new Random();
-        
-        for(int i=0; i<30; i++){
+        int countDoc = 100; //количество генерируемых документов
+        for(int i=0; i<countDoc; i++){
             String clas1 = strClass[random.nextInt(strClass.length)];
             DFabric.GenerationDoc(clas1, SaveDocs);
         }
         
         DFabric.Print(SaveDocs);
+        DFabric.SaveToJSON(SaveDocs);
 
     }
     

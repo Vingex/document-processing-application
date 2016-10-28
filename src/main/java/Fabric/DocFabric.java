@@ -4,16 +4,24 @@
  * and open the template in the editor.
  */
 package Fabric;
+import Converter.PersonConverter;
 import java.util.Random;
 import Generators.*;
 import Documents.*;
 import Exception.DocumentExistsException;
 import Staffs.Person;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+
+
 /**
  *
  * @author Алексей
@@ -31,6 +39,7 @@ public class DocFabric {
     Random random;
     ArrayList<Person> peopleIn; //внутрение представители
     ArrayList<Person> peopleOut; //внешние представители
+
     
     public DocFabric(ArrayList peopleIn, ArrayList peopleOut){
         id=0;
@@ -132,11 +141,43 @@ public class DocFabric {
         for(int i=0; i<peopleIn.size()-1; i++){
             System.out.println(peopleIn.get(i).toString()); 
             for(int j=0; j<SaveDocs.size(); j++)
-                if(peopleIn.get(i)==SaveDocs.get(j).Author)
+                if(peopleIn.get(i)==SaveDocs.get(j).Author){
                     SaveDocs.get(j).DocToString();
+                }
+                    
+                    //
         }
+    }
+    
+    public void SaveToJSON(ArrayList<Document> SaveDocs){
+        
+        Gson gson = new Gson();   
+        Collections.sort(peopleIn,(o1, o2) -> o1.Compare(o2));
+        Collections.sort(SaveDocs,(o1, o2) -> o1.Compare(o2));
+        for(int i=0; i<peopleIn.size()-1; i++){
+            gson = new Gson();
+            String json = "";
+            for(int j=0; j<SaveDocs.size(); j++)
+                    if(peopleIn.get(i)==SaveDocs.get(j).Author){
+                        json += gson.toJson(SaveDocs.get(j));
+                        json += "\n";
+                    } 
+            
+                             
+            try{
+                FileWriter writer = new FileWriter("StaffsReports\\"+peopleIn.get(i).getSurname()+peopleIn.get(i).getName()+peopleIn.get(i).getPatronymic()+".json");  
+                writer.write(json);  
+                writer.close(); 
+            }
+            catch (IOException e) {  
+                    e.printStackTrace();   
+            }  
             
 
+            
+
+        }
     }
+    
 
 }
